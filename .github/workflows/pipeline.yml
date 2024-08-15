@@ -32,7 +32,8 @@ jobs:
       run: go build 
 
     - name: Run tests
-      run: go test ./frontend
+      working-directory: ./frontend
+      run: go test
 
     - name: Lint the code
       uses: golangci/golangci-lint-action@v3
