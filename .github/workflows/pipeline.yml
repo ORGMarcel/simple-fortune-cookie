@@ -47,7 +47,7 @@ jobs:
 
     - name: Run tests
       working-directory: ./frontend
-      run: go test '
+      run: go test 
       
   linting:
 
