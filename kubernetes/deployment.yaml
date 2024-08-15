@@ -1,21 +1,79 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deployment
+  name: frontend-deployment
   labels:
-    app: myapp
+    app: frontend
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: myapp
+      app: frontend
   template:
     metadata:
       labels:
-        app: myapp
+        app: frontend
     spec:
       containers:
-      - name: myapp-container
-        image: <your-dockerhub-username>/<app-name>:<version>
+      - name: frontend-container
+        image: <your-dockerhub-username>/frontend:<version>  # Replace with your Docker image for the frontend
         ports:
-        - containerPort: 80
+        - containerPort: 8081  # Port where the frontend service listens
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: <your-dockerhub-username>/backend:<version>  # Replace with your Docker image for the backend
+        ports:
+        - containerPort: 8080  # Port where the backend service listens
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  labels:
+    app: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8081  # Map Kubernetes Service port 80 to container port 8081
+  type: ClusterIP  # Use ClusterIP to make the service accessible within the cluster
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  labels:
+    app: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080  # Map Kubernetes Service port 80 to container port 8080
+  type: ClusterIP  # Use ClusterIP to make the service accessible within the cluster
