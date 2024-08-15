@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: frontend-container
-        image: orgmarcel/frontendbuild:latest  # Replace with your Docker image for the frontend
+        image: orgmarcel/frontendbuild:latest  
         ports:
-        - containerPort: 8081  # Port where the frontend service listens
+        - containerPort: 8080  
