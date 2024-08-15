@@ -5,7 +5,7 @@ import (
     "net/http/httptest"
     "testing"
 )
-
+//Command
 func TestHealthz(t *testing.T) {
 
     // Create a request to pass to our handler. We don't have any query parameters for now, so we'll
