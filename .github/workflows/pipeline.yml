@@ -53,6 +53,7 @@ jobs:
 
   #Testing:
    #   runs-on: ubuntu-latest
+   #Bombaclaat
     #- name: Run tests
      # working-directory: ./frontend
       #run: go test
