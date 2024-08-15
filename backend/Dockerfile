@@ -2,7 +2,7 @@
 FROM golang:1.18-alpine AS builder
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /backend
 
 # Copy the Go modules files and download dependencies
 COPY backend/go.mod backend/go.sum ./
@@ -18,7 +18,7 @@ RUN go build -o main .
 FROM alpine:latest
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /backend
 
 # Copy the built binary from the builder stage
 COPY --from=builder /app/main .
