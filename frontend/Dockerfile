@@ -26,5 +26,9 @@ COPY --from=builder /app/main .
 # Expose the application port (if needed)
 EXPOSE 8080
 
-# Run
+# Copy templates and static files to the working directory
+COPY --from=builder /app/templates /app/templates
+COPY --from=builder /app/static /app/static
+
+# Run the application
 CMD ["./main"]
