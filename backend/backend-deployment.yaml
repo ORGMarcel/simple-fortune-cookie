@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: <your-dockerhub-username>/backend:<version>  # Replace with your Docker image for the backend
+        ports:
+        - containerPort: 8080  # Port where the backend service listens
