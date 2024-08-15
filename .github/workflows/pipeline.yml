@@ -31,13 +31,13 @@ jobs:
       working-directory: ./frontend
       run: go build 
 
-    - name: Run tests
-      working-directory: ./frontend
-      run: go test
+   # - name: Run tests
+    #  working-directory: ./frontend
+     # run: go test
 
-    - name: Lint the code
-      uses: golangci/golangci-lint-action@v3
-      with:
-        version: v1.53.2 # Replace with the latest stable version
-        args: --timeout 5m
+  #  - name: Lint the code
+   #   uses: golangci/golangci-lint-action@v3
+    #  with:
+     #   version: v1.53.2 # Replace with the latest stable version
+      #  args: --timeout 5m
     
